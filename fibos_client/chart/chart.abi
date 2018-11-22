@@ -1,0 +1,25 @@
+{
+    "version": "eosio::abi/1.0",
+    "structs": [{
+        "name": "cw",
+        "base": "",
+        "fields": [{
+            "name": "scnumber",
+            "type": "float64"
+        }, {
+            "name": "scprice",
+            "type": "float64"
+        },{
+            "name": "totalnumber",
+            "type": "float64"
+        },{
+            "name": "totalprice",
+            "type": "float64"
+        }]
+    }],
+    "actions": [{
+        "name": "getcw",
+        "type": "cw",
+        "ricardian_contract": ""
+    }]
+}
