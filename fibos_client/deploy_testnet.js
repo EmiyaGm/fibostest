@@ -1,7 +1,7 @@
 var FIBOS = require('fibos.js')
 var fs = require("fs");
 var config = {
-    "chainId": "cf057bbfb72640471fd910bcb67639c22df9f92470936cddc1ade0e2f2e7dc4f",
+    "chainId": "68cee14f598d88d340b50940b6ddfba28c444b46cd5f33201ace82c78896793a",
     "producer-name": "eosio",
     "public-key": "FO6MRyAjQq8ud7hVNYcfnVPJqcVpscN5So8BhtHuGYqET5GDW5CV",
     "private-key": "5KQwrPbwdL6PhXujxW37FSSQZ1JiwsST4cqQzDeyXtP79zkvFD3",
@@ -21,24 +21,15 @@ var fibos = FIBOS({
 
 var contractName = "chart";
 
-//新建 hello 账户
-fibos.newaccountSync({
-  creator: 'eosio',
-  name: "emiyagmtest1",
-  owner: config["public-key"],
-  active: config["public-key"]
-});
-
-
 //setcode
 var js_code = fs.readTextFile("./chart/chart.js");
-fibos.setcodeSync("emiyagmtest1", 0, 0, fibos.compileCode(js_code));
+fibos.setcodeSync(contractName, 0, 0, fibos.compileCode(js_code));
 
 //getcode
-var code = fibos.getCodeSync("emiyagmtest1", true);
+var code = fibos.getCodeSync(contractName, true);
 
 console.log("code:", code);
 
 //setabi
 var abi = JSON.parse(fs.readTextFile("./chart/chart.abi"));
-fibos.setabiSync("emiyagmtest1", abi);
+fibos.setabiSync(contractName, abi);

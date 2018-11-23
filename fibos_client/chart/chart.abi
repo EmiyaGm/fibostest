@@ -1,7 +1,7 @@
 {
     "version": "eosio::abi/1.0",
     "structs": [{
-        "name": "cw",
+        "name": "params",
         "base": "",
         "fields": [{
             "name": "scnumber",
@@ -16,10 +16,33 @@
             "name": "totalprice",
             "type": "float64"
         }]
+    }, {
+        "name": "cw",
+        "base": "",
+        "fields": [{
+            "name": "id",
+            "type": "int64"
+        },{
+            "name": "cw",
+            "type": "float64"
+        }]
     }],
     "actions": [{
+        "name": "calccw",
+        "type": "params",
+        "ricardian_contract": ""
+    },{
         "name": "getcw",
         "type": "cw",
         "ricardian_contract": ""
-    }]
+    }],
+    "tables": [
+        {
+            "name": "cws",
+            "type": "cw",
+            "index_type": "i64",
+            "key_names": ["id"],
+            "key_types": ["int64"]
+        }
+    ]
 }

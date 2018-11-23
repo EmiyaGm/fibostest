@@ -19,10 +19,12 @@ var fibos = FIBOS({
     }
 });
 
-var contractName = "chart";
+var contractName = "emiyagmtest1";
 
 //call abi
 var ctx = fibos.contractSync(contractName);
-ctx.getcwSync(5000000000, 0.001, 8000000000, 0.045, {
+ctx.calccwSync(5000000000, 0.001, 8000000000, 0.045, {
     authorization: contractName
 });
+
+console.notice(fibos.getTableRowsSync(true, contractName, contractName, 'cws'));

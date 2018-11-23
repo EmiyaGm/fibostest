@@ -1,4 +1,4 @@
-exports.getcw = (scnumber, scprice, totalnumber, totalprice) => {
+exports.calccw = (scnumber, scprice, totalnumber, totalprice) => {
     var from = {
         supply: scnumber,
         price: scprice
@@ -13,7 +13,12 @@ exports.getcw = (scnumber, scprice, totalnumber, totalprice) => {
     while (true) {
         var cw = (cw1 + cw2) / 2;
         if (Math.abs(cw1 - cw2) < 0.001){
-            console.log(cw)
+            var cws = db.cws(action.account, action.account);
+            var id = cws.get_primary_key();
+            cws.emplace(action.account, {
+                id,
+                cw
+            })
             break;
         }
 
@@ -32,4 +37,9 @@ exports.getcw = (scnumber, scprice, totalnumber, totalprice) => {
             cw2 = cw;
     }
     console.log(cw)
+}
+
+exports.getcw = (id) => {
+    var cws = db.cws(action.account, action.account);
+    console.log(cws.find(id))
 }
